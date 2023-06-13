@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITA</title>
+    <link rel="icon" href="../img/logo-cita.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/create.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/reporting.css">
+    <link rel="stylesheet" href="../css/mytask.css">
+    <link rel="stylesheet" href="../css/reminder.css">
+    <link rel="stylesheet" href="../css/chat.css">
+    <link rel="stylesheet" href="../css/calender.css">
+    <link rel="stylesheet" href="../css/logout.css">
+    <link rel="stylesheet" href="../css/upload.css">
+    <link rel="stylesheet" href="../css/time.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="header menu-toggle">
+                <button>
+                    <ion-icon class="icon open" name="menu-outline"></ion-icon>
+                </button>
+            </div>
+            <div class="header brand">
+                <button> <a href="#">CITA</a></button>
+            </div>
+            <div class="header logout" action="logout.php">
+                <a href="logout.php">Logout</a>
+            </div>
+        </nav>
+        <aside class="sidebar">
+            <ul class="aside-menu">
+                <li class="aside-item">
+                    <a class="create" id="btn-create">
+                        <ion-icon class="icon" name="add-outline"></ion-icon>
+                        <span>Create</span>
+                    </a>
+                </li>
+                <li class="aside-item">
+                    <a id="btn-home">
+                        <ion-icon class="icon" name="home-outline"></ion-icon>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="aside-item">
+                    <a id="btn-mytask">
+                        <ion-icon class="icon" name="checkmark-outline"></ion-icon>
+                        <span>My Tasks</span>
+                    </a>
+                </li>
+                <li class="aside-item">
+                    <a id="btn-chat">
+                        <ion-icon class="icon" name="chatbubble-ellipses-outline"></ion-icon>
+                        <span>Chat</span>
+                    </a>
+                </li>
+                <li class="aside-item">
+                    <a id="btn-report">
+                        <ion-icon class="icon" name="book-outline"></ion-icon>
+                        <span>Reporting</span>
+                    </a>
+                </li>
+                <div class="aside-upload" action="../upload/upload.php">
+                    <a href="../upload/upload.php">upload</a>
+                </div>
+            </ul>
+            <span class="reminder">
+                <a id="btn-notif">
+                    <span>Reminder</span>
+                    <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                </a>
+            </span>
+        </aside>
+        <div class="content">
+            <!-- Menu create -->
+            <div id="container-content" class="create-content">
+                <div class="wrapper">
+                    <div class="box">
+                        <div class="box-input">
+                            <input type="text" name="" id="masukkan-task" placeholder="Enter new task here">
+                        </div>
+                        <div class="tugas">
+                            <select class="pilih-tugas" name="kerja" id="opsi-tugas">
+                                <option value="Tugas">Tugas</option>
+                                <option value="Pribadi">Pribadi</option>
+                                <option value="Wishlist">Wishlist</option>
+                                <option value="Kelompok">Kelompok</option>
+                            </select>
+                            <!-- Icon kalender -->
+                            <div class="date-from">
+                                <!-- <button type="submit" onclick="openPopup()"> <ion-icon id="calendar-icon" class="calender-icon" name="calendar-outline"></ion-icon></button> -->
+                                <span>from</span>
+                                <input id="input-date-from" type="date" >
+                            </div>
+                            <div class="date-to">
+                                <!-- <button type="submit" onclick="openPopup()"> <ion-icon id="calendar-icon" class="calender-icon" name="calendar-outline"></ion-icon></button> -->
+                                <span>to</span>
+                                <input id="input-date-to" type="date">
+                            </div>
+                        </div>
+                        <button onclick="buatTask()">Create task</button>
+                    </div>
+                    <!-- calender -->
+                    <div id="pop-up" class="calendar">
+                        <button class="btn-close" type="submit" onclick="closePopup()"><ion-icon class="" name="close-outline"></ion-icon></button>
+                        <div class="calendar-header">
+                            <span class="month-picker" id="month-picker">February</span>
+                            <div class="year-picker">
+                                <span class="year-change" id="prev-year">
+                                    <pre><</pre>
+                                </span>
+                                <span id="year">2021</span>
+                                <span class="year-change" id="next-year">
+                                    <pre>></pre>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="calendar-body">
+                            <div class="calendar-week-day">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-days"></div>
+                        </div>
+                        <div class="month-list"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Akhir Menu Create -->
+            <!-- Menu Home -->
+            <div id="container-home" class="container-home" action="get_user_data.php">
+                <div class="wrapper">
+                    <span class="home-title">Home</span>
+                    <div class="home-header">
+                        <div class="datetime">
+                            <div class="time"></div>
+                            <div class="date"></div>
+                        </div>
+                        <h1>Welcome, </h1>
+                    </div>
+
+                    <!-- <div class="mytask">
+                        <div class="content-mytask">
+                            <div class="mytask-header">
+                                <img src="../img/orang.png" alt="">
+                                <h1>Mytask</h1>
+                            </div>
+                            <ul class="tab">
+                                <li><button id="btn-upcoming" class="active">Upcoming</button></li>
+                                <li><button id="btn-overdue">Overdue</button></li>
+                                <li><button id="btn-complete">Complete</button></li>
+                            </ul>
+                        </div>
+                        <div class="wrapper-upcoming">
+                            <table class="content-upcoming" border="1" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="task-name-header">Task Name</th>
+                                        <th class="due-date-header">Due Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="list-upcoming">
+                                        <td><input type="checkbox">
+                                            <span>Pemrograman WEB</span></td>
+                                        <td>May 1, 2021</td>
+                                    </tr>
+                                    <tr class="list-upcoming">
+                                        <td><input type="checkbox">
+                                            <span>Project Akhir Pw</span></td>
+                                        <td>May 2, 2021</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="wrapper-overdue">
+                            <div class="content-overdue">
+                                <span>Tugas AI</span>
+                            </div>
+                            <div class="content-overdue">
+                                <span>Pengembangan game</span>
+                            </div>
+                            <div class="content-overdue">
+                                <span>Pengembangan game</span>
+                            </div>
+                        </div>
+                        <div class="wrapper-complete">
+                            <div class="content-overdue">
+                                <span>Project UTS</span>
+                            </div>
+                            <div class="content-overdue">
+                                <span>TUgas Javascript</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <!-- Akhir Menu Home -->
+            <!-- Menu Task -->
+            <div id="container-task" class="container-task">
+                <div class="wrapper-task">
+                    <div class="task-header">
+                        <div class="task-title">
+                            <span>My Task</span>
+                        </div>
+                        <div class="task-menu">
+                            <ul>
+                                <li><a href="#">Semua</a></li>
+                                <li><a href="#">Pribadi</a></li>
+                                <li><a href="#">Tugas</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                                <li><a href="#">Kelompok</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-task">
+                        <table id="table-task" border="1" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="task-name-header col-satu">Task Name</th>
+                                    <th class="due-date-header col-dua">Due Date</th>
+                                    <th class="project-header col-tiga">Project</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Akhir Menu Task -->
+            <!-- Menu Chat -->
+            <div id="container-chat" class="container-chat">
+                <div class="wrapper-chat">
+                    <div class="chat-left">
+                        <div class="my-profile">
+                            <a href="#"><img src="../img/laki.png" alt=""></a>
+                            <a href="#">
+                                <ion-icon class="icon" name="ellipsis-horizontal"></ion-icon>
+                            </a>
+                        </div>
+                        <div class="search-friend-chat">
+                            <input type="text" placeholder="Search Friend">
+                        </div>
+                        <ul class="list-friend-chat">
+                            <li class="item-friend-chat">
+                                <a href="#"><img src="../img/laki.png" alt=""></a>
+                                <span>Desri</span>
+                            </li>
+                            <li class="item-friend-chat">
+                                <a href="#"><img src="../img/laki.png" alt=""></a>
+                                <span>Intan</span>
+                            </li>
+                            <li class="item-friend-chat">
+                                <a href="#"><img src="../img/laki.png" alt=""></a>
+                                <span>Leibniz Tumipa</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chat-right">
+                        <div class="header-chat">
+                            <a href="#"><img src="../img/wanita.png" alt=""></a>
+                            <span>Desri</span>
+                        </div>
+                        <div id="box-chat" class="box-chat">
+                            <div id="friend-chat" class="chat friend-chat ">
+                                <img src="../img/wanita.png">
+                                <div class="item-chat ">
+                                    <span>Halo, apa kabar?</span>
+                                </div>
+                            </div>
+                            <div class="chat my-chat">
+                                <div class="item-chat">
+                                    <span>Baik, kamu apa kabar?</span>
+                                </div>
+                                <img src="../img/laki.png">
+                            </div>
+                            <div class="chat friend-chat">
+                                <img src="../img/wanita.png">
+                                <div class="item-chat friend">
+                                    <span>Baik juga</span>
+                                </div>
+                            </div>
+                            <div id="new-chat"></div>
+                        </div>
+                        <div class="box-typing">
+                            <button>
+                                <ion-icon name="attach-outline"></ion-icon>
+                            </button>
+                            <input type="text" name="" id="input-message" placeholder="Masukkan pesan">
+                            <button onclick="send()" id="btn-send">
+                                <ion-icon class="icon" name="send"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Akhir Menu Chat -->
+            <!-- Menu Reporting -->
+            <div id="container-reporting" class="container-report">
+                <div class="content-report">
+                    <div class="reporting-title">
+                        <span class="report">
+                            <ion-icon name="folder"></ion-icon>
+                        </span>
+                        <h2>Reporting</h2>
+                    </div>
+                    <hr>
+                    <div class="main-cards">
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>PRIBADI</h3>
+                            </div>
+                            <div class="lapor">
+                                <table>
+                                    <tr>
+                                        <td>Complete</td>
+                                        <td> : </td>
+                                        <td> 3 </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Incomplete</td>
+                                        <td> :</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overdue</td>
+                                        <td> :</td>
+                                        <td> 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Task Totals</td>
+                                        <td> :</td>
+                                        <td> 6</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>TUGAS</h3>
+                            </div>
+                            <div class="lapor">
+                                <table>
+                                    <tr>
+                                        <td>Complete</td>
+                                        <td> : </td>
+                                        <td> 3 </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Incomplete</td>
+                                        <td> :</td>
+                                        <td> 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overdue</td>
+                                        <td> :</td>
+                                        <td> 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Task Totals</td>
+                                        <td> :</td>
+                                        <td> 6</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>WISHLIST</h3>
+                            </div>
+                            <div class="lapor">
+                                <table>
+                                    <tr>
+                                        <td>Complete</td>
+                                        <td> :</td>
+                                        <td> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Incomplete</td>
+                                        <td> :</td>
+                                        <td> 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overdue</td>
+                                        <td> :</td>
+                                        <td> 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Task Totals</td>
+                                        <td> :</td>
+                                        <td> 6</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>KELOMPOK</h3>
+                            </div>
+                            <div class="lapor">
+                                <table>
+                                    <tr>
+                                        <td>Complete</td>
+                                        <td> : </td>
+                                        <td> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Incomplete</td>
+                                        <td> :</td>
+                                        <td> 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overdue</td>
+                                        <td> :</td>
+                                        <td> 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Task Totals</td>
+                                        <td> : </td>
+                                        <td> 6</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Akhir Menu Reporting -->
+            <!-- Menu Notification -->
+            <div id="container-notif" class="container-notif">
+                <div class="wrapper-notif">
+                    <div class="notif-header">
+                        <span>
+                            <ion-icon name="notifications-outline"></ion-icon>
+                        </span>
+                        <span>Reminder</span>
+                        <hr>
+                    </div>
+                    <div class="mark">
+                        <span>Mark all as read</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Akhir Menu Notification -->
+        </div>
+    </div>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/chat.js"></script>
+    <script src="../js/link_task.js"></script>
+    <script src="../js/time.js"></script>
+    <!-- <script src="../js/createtask.js"></script> -->
+
+
+    <!-- Icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

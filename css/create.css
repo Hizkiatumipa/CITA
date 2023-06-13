@@ -1,0 +1,130 @@
+.create-content {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.create-content .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.create-content .box {
+    width: 600px;
+    max-width: 1000px;
+    padding: 50px 20px;
+    background-color: #1572c9;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+}
+
+.create-content .box .box-input {
+    width: 80%;
+    background-color: #E6F3FF;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+.create-content .box .box-input input {
+    width: 100%;
+}
+
+.create-content .box input::placeholder {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #838383;
+}
+
+input[type="text"] {
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.3em;
+}
+
+.create-content .box .box-input .icon {
+    color: #3D73A6;
+}
+
+.create-content .box .tugas {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.create-content .box .pilih-tugas,
+.create-content .box .calender-icon {
+    padding: 5px 7px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    width: 80px;
+    background-color: #E6F3FF;
+    color: #7EB0DF;
+    cursor: pointer;
+}
+
+.create-content .box .calender-icon {
+    font-size: 1.5rem;
+}
+
+.create-content .box button {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    background-color: #7EB0DF;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.create-content .box .tugas button {
+    margin-top: 0;
+    width: 40px;
+    background: none;
+}
+
+.create-content .box .date-from,
+.create-content .box .date-to {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-weight: 500;
+    width: 25%;
+    color: #fff;
+}
+/* .create-content .box .tugas input::placeholder {
+    color: #fff;
+    font-size: 0.7rem;
+    
+} */
+.create-content .box .tugas input {
+    width: auto;
+    /* border-bottom: 2px solid #ccc; */
+    background-color: #7EB0DF;
+    border: none;
+    padding: 5px;
+    font-size: 0.7rem;
+    color: #fff;
+    /* transition: border-bottom-color 0.3s ease; */
+}
+
+.create-content .box .tugas input:focus {
+    border-bottom-color: #979797;
+    outline: none;
+}

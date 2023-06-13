@@ -1,0 +1,36 @@
+/* CSS untuk datetime */
+.datetime {
+  font-size: 18px;
+  padding: 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1b528d 0%, #3d73a6 100%);
+  border-radius: 4px;
+  width: 300px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 12px;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+}
+
+/* CSS untuk time */
+.time {
+  font-size: 3em;
+  color: #fff;
+}
+
+/* CSS untuk date */
+.date {
+  font-size: 1.75em;
+  color: #fff;
+}
+
+/* CSS untuk home-header p */
+.home-header p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,23 @@
+/* CSS for the logout header */
+.header.logout {
+  margin-left: auto;
+  padding-right: 1.5rem;
+}
+
+.header.logout a {
+  color: #3d73a6;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.header.logout a:hover {
+  color: #ff0000;
+}
+
+/* Optional: Add a background color and padding to the logout button */
+.header.logout a {
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
